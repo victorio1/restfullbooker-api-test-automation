@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "a3f250df-80a3-47bf-85fb-fa8fca9d10f6",
+		"name": "Verificar registro de 5 reservas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var booking = JSON.parse(responseBody)\r",
+							"var booking_id = booking['bookingid']\r",
+							"\r",
+							"pm.globals.set(\"booking_id\", booking_id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"{{firstname}}\",\r\n    \"lastname\" : \"{{lastname}}\",\r\n    \"totalprice\" : \"{{totalprice}}\",\r\n    \"depositpaid\" : \"{{depositpaid}}\",\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"{{checkin}}\",\r\n        \"checkout\" : \"{{checkout}}\"\r\n    },\r\n    \"additionalneeds\" : \"{{additionalneeds}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{restfullboker}}/booking",
+					"host": [
+						"{{restfullboker}}"
+					],
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
